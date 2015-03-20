@@ -51,7 +51,7 @@ namespace DeviationForm
         private string CatchInnerExceptions(Exception ex)
         {
             string msg = string.Empty;
-            Exception inEx = _ourException.InnerException;
+            Exception inEx = ex.InnerException;
             msg += "Inner exception:\n";
             msg += string.Format("HRESULT: {0:x}\nMessage: {1}\n\nStack Trace:\n{2}\n\n", inEx.HResult, inEx.Message, inEx.StackTrace);
 
