@@ -24,6 +24,9 @@ namespace DeviationForm
         private DeviationFormHandler dfh;
         private List<FormEntry> CurrentForm;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();
