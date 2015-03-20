@@ -1,0 +1,143 @@
+[
+    {
+        "FormFieldName" : "Supplier Name",
+        "DataFieldName" : "supplier_name",
+        "DataFieldType": "Text"
+    },
+    {
+        "FormFieldName" : "Requestor Name",
+        "DataFieldName" : "reqr_name",
+        "DataFieldType": "Text"
+    },
+    {
+        "FormFieldName" : "Requestor Title",
+        "DataFieldName" : "reqr_title",
+        "DataFieldType": "Text"
+    },
+    {
+        "FormFieldName" : "Requestor Email",
+        "DataFieldName" : "reqr_email",
+        "DataFieldType": "Text"
+    },
+    {
+        "FormFieldName" : "PO Number",
+        "DataFieldName" : "po",
+        "DataFieldType": "Text"
+    },
+    {
+        "FormFieldName" : "Request Date",
+        "DataFieldName" : "req_date",
+        "DataFieldType": "Date"
+    },
+    {
+        "FormFieldName" : "Part Numbers",
+        "DataFieldName" : "parts",
+        "DataFieldType": "Text"
+    },
+    {
+        "FormFieldName" : "Description",
+        "DataFieldName" : "descr",
+        "DataFieldType": "Text"
+    },
+    {
+        "FormFieldName" : "Supplied Parts",
+        "DataFieldName" : "parts_sup",
+        "DataFieldType": "Boolean"
+    },
+    {
+        "FormFieldName" : "Parts to be Supplied",
+        "DataFieldName" : "parts_sup_to_be",
+        "DataFieldType": "Boolean"
+    },
+    {
+        "FormFieldName" : "Permanent",
+        "DataFieldName" : "perm",
+        "DataFieldType": "Boolean"
+    },
+    {
+        "FormFieldName" : "Valid for open PO(s) ONLY",
+        "DataFieldName" : "valid_only_open_pos",
+        "DataFieldType": "Boolean"
+    },
+    {
+        "FormFieldName" : "Valid for duration below",
+        "DataFieldName" : "valid_duration",
+        "DataFieldType": "Boolean"
+    },
+    {
+        "FormFieldName" : "Valid for duration",
+        "DataFieldName" : "duration",
+        "DataFieldType": "Text"
+    },
+    {
+        "FormFieldName" : "Deviation Description",
+        "DataFieldName" : "dev_desc",
+        "DataFieldType": "Text"
+    },
+    {
+        "FormFieldName" : "Reason for Deviation",
+        "DataFieldName" : "dev_reas",
+        "DataFieldType": "Text"
+    },
+    {
+        "FormFieldName" : "Request is approved w/ clarification",
+        "DataFieldName" : "req_approved",
+        "DataFieldType": "Boolean"
+    },
+    {
+        "FormFieldName" : "Reques is NOT approved w/ clarification",
+        "DataFieldName" : "req_not_approved",
+        "DataFieldType": "Boolean"
+    },
+    {
+        "FormFieldName" : "No ECR to follow",
+        "DataFieldName" : "ecr_not_coming",
+        "DataFieldType": "Boolean"
+    },
+
+    {
+        "FormFieldName" : "ECR to follow",
+        "DataFieldName" : "ecr_coming",
+        "DataFieldType": "Boolean"
+    },
+    {
+        "FormFieldName" : "Comment",
+        "DataFieldName" : "comm",
+        "DataFieldType": "Text"
+    },
+    {
+        "FormFieldName" : "Engineering Approval",
+        "DataFieldName" : "eng_app",
+        "DataFieldType": "Text"
+    },
+    {
+        "FormFieldName" : "Purchasing Approval",
+        "DataFieldName" : "purch_app",
+        "DataFieldType": "Text"
+    },
+    {
+        "FormFieldName" : "Quality Approval",
+        "DataFieldName" : "qual_app",
+        "DataFieldType": "Text"
+    },
+    {
+        "FormFieldName" : "Request Identification Number",
+        "DataFieldName" : "req_id",
+        "DataFieldType": "Number"
+    },
+    {
+        "FormFieldName" : "Engineering Apporval Date",
+        "DataFieldName" : "eng_app_date",
+        "DataFieldType": "Date"
+    },
+    {
+        "FormFieldName" : "Purchasing Approval Date",
+        "DataFieldName" :  "purch_app_date",
+        "DataFieldType": "Date"
+    },
+    {
+        "FormFieldName" : "Quality Approval Date",
+        "DataFieldName" : "qual_app_date",
+        "DataFieldType": "Date"
+    }
+]
