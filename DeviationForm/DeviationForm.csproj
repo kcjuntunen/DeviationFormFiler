@@ -29,8 +29,9 @@
     <ProductName>Deviation Request Form Filer</ProductName>
     <PublisherName>Amstore Corp</PublisherName>
     <SuiteName>Amstore Software Tools</SuiteName>
-    <ApplicationRevision>2</ApplicationRevision>
-    <ApplicationVersion>0.3.2.%2a</ApplicationVersion>
+    <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
+    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationVersion>0.4.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
