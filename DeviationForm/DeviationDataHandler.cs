@@ -20,6 +20,10 @@ namespace DeviationForm
             this.DbLocation = location;
         }
 
+        /// <summary>
+        /// The contents of this.CurrentForm are thrown into this.DbLocation. 
+        /// </summary>
+        /// <exception> Throws <see cref="DataHaionDataHandler"></exception>
         public void InsertData()
         {
             StringBuilder sb = new StringBuilder("INSERT INTO dev_reqs ");
@@ -80,8 +84,17 @@ namespace DeviationForm
             //}
         }
 
+        /// <summary>
+        /// Gets or sets the provider part of a connection string
+        /// </summary>
         public string DbProvider { get; set; }
+        /// <summary>
+        /// Gets or sets the target location part of a connection string
+        /// </summary>
         public string DbLocation { get; set; }
+        /// <summary>
+        /// A <see cref="List<FormEntry>"> with the content of a pdf form
+        /// </summary>
         public List<FormEntry> CurrentForm { get; set; }
     }
 }

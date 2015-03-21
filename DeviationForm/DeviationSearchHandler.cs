@@ -7,7 +7,10 @@ namespace DeviationForm
 {
     class DeviationSearchHandler
     {
-
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="ini">An IniParser object</param>
         public DeviationSearchHandler (IniParser ini)
 	    {
             this.Ini = ini;
@@ -15,6 +18,13 @@ namespace DeviationForm
             this.DbLocation = ini.GetSetting("db", "location");
 	    }
 
+	    
+	/// <summary>
+	/// Runs the specified search 
+	/// </summary>
+	/// <param name="searchTerms">Our search terms. Really only one term; we're not that smart yet</param>
+	/// <param name="chked">A SearchOptions value. I don't know why, but we're looking for an int</param>
+	/// <returns>Returns a <see cref="System.Data.DataTable"> object</returns>
         public System.Data.DataTable RunSearch(string searchTerms, int chked)
         {
             StringBuilder sb = new StringBuilder("SELECT dev_reqs.supplier_name AS Supplier, dev_reqs.reqr_name AS Requestor, " +

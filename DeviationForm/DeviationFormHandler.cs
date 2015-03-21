@@ -11,8 +11,12 @@ namespace DeviationForm
     class DeviationFormHandler
     {
         private string _formDir;
-        private string PdfPath;
+        private string _pdfPath;
 
+        /// <summary>
+        /// Possible checkbox options.
+        /// </summary>
+        /// <remarks>Oh, boy! Oh, boy! I get to use the bitwise flags trick!</remarks>
         [Flags]
         public enum SearchOptions
         {
@@ -24,13 +28,34 @@ namespace DeviationForm
             Description = 0x10
         }
 
+        /// <summary>
+        /// Our constructor
+        /// </summary>
+        /// <param name="pdfPath">Our pdf file</param>
+        /// <param name="ini">An IniParser object</param>
         public DeviationFormHandler(string pdfPath, IniParser ini)
         {
             this.Ini = ini;
             this._formDir = this.Ini.GetSetting("filelocations", "formdir");
-            this.SetPdfPath(pdfPath);
+            this.PdfPath = pdfPath;
+        }
+        
+        /// <summary>
+        /// Our constructor
+        /// </summary>
+        /// <param name="pdfPath">Our pdf file</param>
+        /// <param name="fDir">The target form directory</param>
+        public DeviationFormHandler(string pdfPath, string fDir)
+        {
+            this.Ini = ini;
+            this._formDir = fDir;
+            this.PdfPath = pdfPath;
         }
 
+        /// <summary>
+        /// Sucks all the data from a pdf form
+        /// </summary>
+        /// <returns>Returns a <see cref="List<>"> of <see cref="FormEntry"> objects</returns>
         public List<FormEntry> GetFormData()
         {
             string jsonLocation = Ini.GetSetting("FileLocations", "tables");
@@ -118,6 +143,9 @@ namespace DeviationForm
         {
         }
 
+        /// <summary>
+        /// Inserts the data, and moves the file
+        /// </summary>
         public void FilePdf()
         {
             DeviationFileHandler dFih = new DeviationFileHandler(Ini.GetSetting("FileLocations", "FormDir"), this.PdfPath);
@@ -205,6 +233,13 @@ namespace DeviationForm
             }
         }
 
+        /// <summary>
+        /// Alphabetizes, then hashes a list of all the fields on the form, comparing the resultant
+        /// hash to a saved hash. Makes sure we're using a form that has all the same fields.
+        /// </summary>
+        /// <param name="k">Takes a <see cref="System.Collections.Generic.ICollection<>"> 
+        /// of <see cref="System.String">s</param>
+        /// <returns>Returns true if hashes match.</returns>
         private bool ValidateForm(ICollection<string> k)
         {
             string fieldList = string.Empty;
@@ -237,6 +272,24 @@ namespace DeviationForm
                 this.PdfPath = pdfPath;
         }
 
+        /// <summary>
+        /// Gets or sets the file path of the pdf we're working on
+        /// </summary>
+        public PdfPath
+        {
+	    set
+	    {
+		if (value.ToLower().Contains(this._formDir.ToLower()))
+		    throw new DeviationFormHandlerException("You cannot operate on a file that exists in the Processed Form Directery.");
+		else
+		    this._pdfPath = pdfPath;
+	    }
+	    get { return _pdfPath; }
+	}
+	
+	/// <summary>
+        /// Gets or sets an IniParser object
+        /// </summary>
         public IniParser Ini { get; set; }
         private List<FormEntry> CurrentForm { get; set; }
         private FormFieldTranslation[] fft { get; set; }
