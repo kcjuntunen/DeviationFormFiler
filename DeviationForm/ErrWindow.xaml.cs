@@ -20,11 +20,19 @@ namespace DeviationForm
     public partial class ErrWindow : Window
     {
         private Exception _ourException;
+        
+        /// <summary>
+        /// Instantiates our window
+        /// </summary>
         public ErrWindow()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Instantiates our window
+        /// </summary>
+        /// <param name="ex">A System.Exception object</param>
         public ErrWindow(Exception ex)
         {
             InitializeComponent();
@@ -32,6 +40,9 @@ namespace DeviationForm
             this.ShowErr();
         }
 
+        /// <summary>
+        /// Fills the error textbox
+        /// </summary>
         private void ShowErr()
         {
             System.Media.SystemSounds.Beep.Play();
@@ -42,12 +53,17 @@ namespace DeviationForm
 
             if (_ourException.InnerException != null)
             {
-                msg += CatchInnerExceptions(_ourException.InnerException);
+                msg += CatchInnerExceptions(_ourException);
             }
 
             this.tbErrMsg.Text = msg;
         }
 
+        /// <summary>
+        /// Takes an exception, pulls out its inner exception, and builds an error message
+        /// </summary>
+        /// <param name="ex">A System.Exception object</param>
+        /// <returns>Returns an nicely constructed error message in a string</returns>
         private string CatchInnerExceptions(Exception ex)
         {
             string msg = string.Empty;
@@ -57,7 +73,7 @@ namespace DeviationForm
 
             //Recursive! Watch out!
             if (inEx.InnerException != null)
-                msg += CatchInnerExceptions(ex);
+                msg += CatchInnerExceptions(inEx);
 
             return msg;
         }

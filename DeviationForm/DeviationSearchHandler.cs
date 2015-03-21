@@ -20,7 +20,7 @@ namespace DeviationForm
 
 	    
 	/// <summary>
-	/// Runs the specified search 
+	/// Constructs an SQL query, and runs the specified search
 	/// </summary>
 	/// <param name="searchTerms">Our search terms. Really only one term; we're not that smart yet</param>
 	/// <param name="chked">A SearchOptions value. I don't know why, but we're looking for an int</param>

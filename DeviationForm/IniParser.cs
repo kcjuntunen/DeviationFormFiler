@@ -5,6 +5,9 @@ using System.Collections;
 
 /// <summary>
 /// Stole this from <http://bytes.com/topic/net/insights/797169-reading-parsing-ini-file-c>
+/// I couldn't find any license info on it. Maybe there's some in <http://bytes.com/terms.html>
+/// that I couldn't understand.
+/// I have made a few changes to it
 /// </summary>
 public class IniParser
 {
