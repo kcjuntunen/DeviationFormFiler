@@ -33,11 +33,22 @@ namespace DeviationForm
         /// </summary>
         /// <param name="pdfPath">Our pdf file</param>
         /// <param name="ini">An IniParser object</param>
+        public DeviationFormHandler(string pdfPath)
+        {
+            this._formDir = Properties.Settings.Default.FormDir;
+            this._pdfPath = pdfPath;
+        }
+
+        /// <summary>
+        /// Our constructor
+        /// </summary>
+        /// <param name="pdfPath">Our pdf file</param>
+        /// <param name="ini">An IniParser object</param>
         public DeviationFormHandler(string pdfPath, IniParser ini)
         {
             this.Ini = ini;
             this._formDir = this.Ini.GetSetting("filelocations", "formdir");
-            this.PdfPath = pdfPath;
+            this._pdfPath = pdfPath;
         }
         
         /// <summary>
@@ -47,9 +58,8 @@ namespace DeviationForm
         /// <param name="fDir">The target form directory</param>
         public DeviationFormHandler(string pdfPath, string fDir)
         {
-            this.Ini = ini;
             this._formDir = fDir;
-            this.PdfPath = pdfPath;
+            this._pdfPath = pdfPath;
         }
 
         /// <summary>
@@ -275,17 +285,17 @@ namespace DeviationForm
         /// <summary>
         /// Gets or sets the file path of the pdf we're working on
         /// </summary>
-        public PdfPath
+        public string PdfPath
         {
-	    set
-	    {
-		if (value.ToLower().Contains(this._formDir.ToLower()))
-		    throw new DeviationFormHandlerException("You cannot operate on a file that exists in the Processed Form Directery.");
-		else
-		    this._pdfPath = pdfPath;
-	    }
-	    get { return _pdfPath; }
-	}
+	        set
+	        {
+		        if (value.ToLower().Contains(this._formDir.ToLower()))
+		            throw new DeviationFormHandlerException("You cannot operate on a file that exists in the Processed Form Directery.");
+		        else
+		            this._pdfPath = value;
+            }    
+	        get { return _pdfPath; }
+        }
 	
 	/// <summary>
         /// Gets or sets an IniParser object

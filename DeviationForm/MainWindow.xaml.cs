@@ -20,7 +20,7 @@ namespace DeviationForm
     /// </summary>
     public partial class MainWindow : Window
     {
-        private IniParser ini;
+        //private IniParser ini;
         private DeviationFormHandler dfh;
         private List<FormEntry> CurrentForm;
 
@@ -30,63 +30,19 @@ namespace DeviationForm
         public MainWindow()
         {
             InitializeComponent();
-            
-            /// I shouldn't hard code these. Oh well.
-	    this.init(@"C:\Optimize\Import\dev_req.ini",
-	      @"\\Amstore-svr-02\shared\shared\general\dev_req.ini");
+	        this.init();
         }
         
-        private void init(string localCopy, string backup)
+        private void init()
         {
-            try
-            {
-                if (System.IO.File.Exists(localCopy))
-                    ini = new IniParser(localCopy);
-                else
-                {
-                    ini = new IniParser(backup);
-                    try
-                    {
-                        System.IO.File.Copy(backup, localCopy);
-                    }
-                    catch (Exception ex)
-                    {
-                        ErrWindow err = new ErrWindow(ex);
-                        err.ShowDialog();
-                        this.Close();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                ErrWindow err = new ErrWindow(ex);
-                err.ShowDialog();
-                this.Close();
-            }
+            this.tbFormDir.Text = Properties.Settings.Default.FormDir;
+            this.tbTableMap.Text = Properties.Settings.Default.Tables;
+            this.tbDataLoc.Text = Properties.Settings.Default.dbLocation;
 
-            int outVal;
-            bool bRes;
-
-            bRes = int.TryParse(this.ini.GetSetting("WindowGeometry", "Top"), out outVal);
-            if (bRes) 
-                this.Top = (double)outVal;
-
-            bRes = int.TryParse(this.ini.GetSetting("WindowGeometry", "Left"), out outVal);
-            if (bRes)
-                this.Left = (double)outVal;
-
-            bRes = int.TryParse(this.ini.GetSetting("WindowGeometry", "Width"), out outVal);
-            if (bRes)
-                this.Width = (double)outVal;
-
-            bRes = int.TryParse(this.ini.GetSetting("WindowGeometry", "Height"), out outVal);
-            if (bRes)
-                this.Height = (double)outVal;
-
-            this.tbFormDir.Text = this.ini.GetSetting("filelocations", "formdir");
-            this.tbTableMap.Text = this.ini.GetSetting("filelocations", "tables");
-            this.tbDataLoc.Text = this.ini.GetSetting("db", "location");
-
+            this.Top = Properties.Settings.Default.Top;
+            this.Left = Properties.Settings.Default.Left;
+            this.Width = Properties.Settings.Default.Width;
+            this.Height = Properties.Settings.Default.Height;
         }
         
         private void OpenFile(string fName)
@@ -95,7 +51,7 @@ namespace DeviationForm
 
             try
             {
-                dfh = new DeviationFormHandler(fName, ini);
+                dfh = new DeviationFormHandler(fName);
                 CurrentForm = dfh.GetFormData();
                 this.dg1.ItemsSource = CurrentForm;
             }
@@ -153,28 +109,17 @@ namespace DeviationForm
         }
 
         private void MainWindow1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {            
-            ini.AddSetting("WindowGeometry", "Top", this.Top.ToString());
-            ini.AddSetting("WindowGeometry", "Left", this.Left.ToString());
-            ini.AddSetting("WindowGeometry", "Width", this.Width.ToString());
-            ini.AddSetting("WindowGeometry", "Height", this.Height.ToString());
+        {
+            Properties.Settings.Default.Top = this.Top;
+            Properties.Settings.Default.Left = this.Left;
+            Properties.Settings.Default.Width = this.Width;
+            Properties.Settings.Default.Height = this.Height;
 
             if (!this.btnSaveConfig.IsEnabled)
             {
-                ini.AddSetting("filelocations", "formdir", this.tbFormDir.Text);
-                ini.AddSetting("filelocations", "tables", this.tbTableMap.Text);
-                ini.AddSetting("db", "location", this.tbDataLoc.Text);   
-            }
-
-            try
-            {
-                ini.SaveSettings();
-            }
-            catch (Exception ex)
-            {
-                ErrWindow err = new ErrWindow(ex);
-                err.ShowDialog();
-                this.Close();
+                Properties.Settings.Default.FormDir = this.tbFormDir.Text;
+                Properties.Settings.Default.Tables = this.tbTableMap.Text;
+                Properties.Settings.Default.dbLocation = this.tbDataLoc.Text;
             }
         }
 
@@ -238,7 +183,7 @@ namespace DeviationForm
             if (this.chDesc.IsChecked.Value)
                 checkedBoxes += (int)DeviationFormHandler.SearchOptions.Description;
 
-            DeviationSearchHandler dsh = new DeviationSearchHandler(ini);
+            DeviationSearchHandler dsh = new DeviationSearchHandler();
 
             //if (!dbR.IsClosed)
             //{

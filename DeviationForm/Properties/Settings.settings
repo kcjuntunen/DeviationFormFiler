@@ -2,13 +2,35 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="DeviationForm.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="dev_reqConnectionString" Type="(Connection string)" Scope="Application">
-      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\juntunenkc\Desktop\dev_req.accdb&lt;/ConnectionString&gt;
-  &lt;ProviderName&gt;System.Data.OleDb&lt;/ProviderName&gt;
-&lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\juntunenkc\Desktop\dev_req.accdb</Value>
+    <Setting Name="Left" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">533</Value>
+    </Setting>
+    <Setting Name="Top" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">232</Value>
+    </Setting>
+    <Setting Name="Width" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">512</Value>
+    </Setting>
+    <Setting Name="Height" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">215</Value>
+    </Setting>
+    <Setting Name="Tables" Type="System.String" Scope="User">
+      <Value Profile="(Default)">\\amstore-svr-02\shared\shared\general\tables.json</Value>
+    </Setting>
+    <Setting Name="FormDir" Type="System.String" Scope="User">
+      <Value Profile="(Default)">\\amstore-svr-02\shared\shared\general\deviation forms</Value>
+    </Setting>
+    <Setting Name="TableHash" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">59eb794c5ff57e5b118f20b10b2fda57e8d2e8fc</Value>
+    </Setting>
+    <Setting Name="dbLocation" Type="System.String" Scope="User">
+      <Value Profile="(Default)">s:\shared\general\dev_req.accdb</Value>
+    </Setting>
+    <Setting Name="dbProvider" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Microsoft.ACE.OLEDB.12.0</Value>
+    </Setting>
+    <Setting Name="devEmail" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">kcjuntunen@amstore.com</Value>
     </Setting>
   </Settings>
 </SettingsFile>

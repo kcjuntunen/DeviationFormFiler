@@ -18,6 +18,12 @@ namespace DeviationForm
             this.DbLocation = ini.GetSetting("db", "location");
 	    }
 
+        public DeviationSearchHandler()
+        {
+            this.DbLocation = Properties.Settings.Default.dbLocation;
+            this.DbProvider = Properties.Settings.Default.dbProvider;
+        }
+
 	    
 	/// <summary>
 	/// Constructs an SQL query, and runs the specified search
