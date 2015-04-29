@@ -12,6 +12,10 @@ namespace DeviationForm
     {
         private string _formDir;
         private string _pdfPath;
+        private string _jsonLocation;
+        private string _dbLocation;
+        private string _dbProvider;
+        private string _tableHash;
 
         /// <summary>
         /// Possible checkbox options.
@@ -32,11 +36,14 @@ namespace DeviationForm
         /// Our constructor
         /// </summary>
         /// <param name="pdfPath">Our pdf file</param>
-        /// <param name="ini">An IniParser object</param>
         public DeviationFormHandler(string pdfPath)
         {
             this._formDir = Properties.Settings.Default.FormDir;
             this._pdfPath = pdfPath;
+            this._jsonLocation = Properties.Settings.Default.Tables;
+            this._dbLocation = Properties.Settings.Default.dbLocation;
+            this._dbProvider = Properties.Settings.Default.dbProvider;
+            this._tableHash = Properties.Settings.Default.TableHash;
         }
 
         /// <summary>
@@ -46,29 +53,21 @@ namespace DeviationForm
         /// <param name="ini">An IniParser object</param>
         public DeviationFormHandler(string pdfPath, IniParser ini)
         {
-            this.Ini = ini;
-            this._formDir = this.Ini.GetSetting("filelocations", "formdir");
+            this._formDir = ini.GetSetting("filelocations", "formdir");
             this._pdfPath = pdfPath;
+            this._jsonLocation = ini.GetSetting("FileLocations", "tables");
+            this._dbLocation = ini.GetSetting("DB", "location");
+            this._dbProvider = ini.GetSetting("DB", "provider");
+            this._tableHash = ini.GetSetting("FileLocations", "TableHash");
         }
         
-        /// <summary>
-        /// Our constructor
-        /// </summary>
-        /// <param name="pdfPath">Our pdf file</param>
-        /// <param name="fDir">The target form directory</param>
-        public DeviationFormHandler(string pdfPath, string fDir)
-        {
-            this._formDir = fDir;
-            this._pdfPath = pdfPath;
-        }
-
         /// <summary>
         /// Sucks all the data from a pdf form
         /// </summary>
         /// <returns>Returns a <see cref="List<>"> of <see cref="FormEntry"> objects</returns>
         public List<FormEntry> GetFormData()
         {
-            string jsonLocation = Ini.GetSetting("FileLocations", "tables");
+            string jsonLocation = this._jsonLocation;
             string json = string.Empty;
             try
             {
@@ -158,7 +157,7 @@ namespace DeviationForm
         /// </summary>
         public void FilePdf()
         {
-            DeviationFileHandler dFih = new DeviationFileHandler(Ini.GetSetting("FileLocations", "FormDir"), this.PdfPath);
+            DeviationFileHandler dFih = new DeviationFileHandler(this._formDir, this.PdfPath);
             FormFieldTranslation fft = new FormFieldTranslation();
 
             fft.FormFieldName = "File Location";
@@ -171,7 +170,7 @@ namespace DeviationForm
             if (System.Windows.MessageBox.Show(msg, "Really?", System.Windows.MessageBoxButton.YesNo, System.Windows.MessageBoxImage.Question)
                 == System.Windows.MessageBoxResult.Yes)
             {
-                DeviationDataHandler ddh = new DeviationDataHandler(CurrentForm, Ini.GetSetting("DB", "provider"), Ini.GetSetting("DB", "location"));
+                DeviationDataHandler ddh = new DeviationDataHandler(CurrentForm, this._dbProvider, this._dbLocation);
                 try
                 {
                     dFih.FilePdf();
@@ -202,8 +201,8 @@ namespace DeviationForm
 
         private void InsertData2()
         {
-            string provider = Ini.GetSetting("DB", "provider");
-            string dbPath = Ini.GetSetting("DB", "location");
+            string provider = this._dbProvider;
+            string dbPath = this._dbLocation;
             StringBuilder sb = new StringBuilder("INSERT INTO dev_reqs ");
             sb.Append(" (");
             string connectionString = "Provider=" + provider + ";Data Source=" + dbPath;
@@ -263,7 +262,7 @@ namespace DeviationForm
             byte[] encodedFieldList = new UTF8Encoding().GetBytes(fieldList);
             byte[] hash = ((System.Security.Cryptography.HashAlgorithm)System.Security.Cryptography.CryptoConfig.CreateFromName("SHA1")).ComputeHash(encodedFieldList);
 
-            string b = Ini.GetSetting("FileLocations", "TableHash");
+            string b = this._tableHash;
             string hashString1 = string.Empty;
 
             foreach (byte x in hash)
@@ -296,11 +295,7 @@ namespace DeviationForm
             }    
 	        get { return _pdfPath; }
         }
-	
-	/// <summary>
-        /// Gets or sets an IniParser object
-        /// </summary>
-        public IniParser Ini { get; set; }
+
         private List<FormEntry> CurrentForm { get; set; }
         private FormFieldTranslation[] fft { get; set; }
     }
