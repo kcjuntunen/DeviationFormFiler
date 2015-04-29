@@ -3,19 +3,7 @@ Extracts data from a PDF, puts it in a searchable database, and moves the PDF so
 
 ## References
 -  itextsharp
--  Microsoft.CSharp
 -  Newtonsoft.Json
--  PresentationCore
--  PresentationFramework
--  System
--  System.Core
--  System.Data
--  System.Data.DataSetExtensions
--  System.Xaml
--  System.Xml
--  WindowsBase
-
-## TODO
 
 ### Licenses
 -   Everything that I did is under a BSD License. 
