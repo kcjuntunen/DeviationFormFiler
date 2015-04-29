@@ -143,12 +143,15 @@ namespace DeviationForm.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Setting {
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Maximized {
             get {
-                return ((string)(this["Setting"]));
+                return ((bool)(this["Maximized"]));
+            }
+            set {
+                this["Maximized"] = value;
             }
         }
     }
