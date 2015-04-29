@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -121,6 +120,8 @@ namespace DeviationForm
                 Properties.Settings.Default.Tables = this.tbTableMap.Text;
                 Properties.Settings.Default.dbLocation = this.tbDataLoc.Text;
             }
+            Properties.Settings.Default.Save();
+            
         }
 
         private void Grid_Drop(object sender, DragEventArgs e)

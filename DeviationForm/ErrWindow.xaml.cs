@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -49,7 +48,7 @@ namespace DeviationForm
             this.Title = "Error in " + _ourException.TargetSite;
             string msg = string.Empty;
 
-            msg += string.Format("HRESULT: {0:x}\nMessage: {1}\n\nStack Trace:\n{2}\n\n", _ourException.HResult, _ourException.Message,_ourException.StackTrace);
+            msg += string.Format("HRESULT: {0:x}\r\nMessage: {1}\r\n\r\nStack Trace:\r\n{2}\r\n\r\n", _ourException.HResult, _ourException.Message,_ourException.StackTrace);
 
             if (_ourException.InnerException != null)
             {
@@ -68,8 +67,8 @@ namespace DeviationForm
         {
             string msg = string.Empty;
             Exception inEx = ex.InnerException;
-            msg += "Inner exception:\n";
-            msg += string.Format("HRESULT: {0:x}\nMessage: {1}\n\nStack Trace:\n{2}\n\n", inEx.HResult, inEx.Message, inEx.StackTrace);
+            msg += "Inner exception:\r\n";
+            msg += string.Format("HRESULT: {0:x}\r\nMessage: {1}\r\n\r\nStack Trace:\r\n{2}\r\n\r\n", inEx.HResult, inEx.Message, inEx.StackTrace);
 
             //Recursive! Watch out!
             if (inEx.InnerException != null)
@@ -80,6 +79,16 @@ namespace DeviationForm
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
+            this.Close();
+        }
+
+        private void btnSend_Click(object sender, RoutedEventArgs e)
+        {
+            string mailToLink = "mailto:" + Properties.Settings.Default.devEmail +
+                "?subject=" + 
+                Properties.Settings.Default.errMailSub +
+                "&body=" + tbErrMsg.Text;
+            System.Diagnostics.Process.Start(mailToLink.Replace("\r\n", "%0A"));
             this.Close();
         }
     }

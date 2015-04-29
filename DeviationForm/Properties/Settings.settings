@@ -32,5 +32,11 @@
     <Setting Name="devEmail" Type="System.String" Scope="Application">
       <Value Profile="(Default)">kcjuntunen@amstore.com</Value>
     </Setting>
+    <Setting Name="errMailSub" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Error in Deviation tracking doodad.</Value>
+    </Setting>
+    <Setting Name="Setting" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>
