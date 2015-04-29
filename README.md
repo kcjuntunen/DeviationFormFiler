@@ -13,7 +13,6 @@ Extracts data from a PDF, puts it in a searchable database, and moves the PDF so
 -  System.Data.DataSetExtensions
 -  System.Xaml
 -  System.Xml
--  System.Xml.Linq
 -  WindowsBase
 
 ## TODO
