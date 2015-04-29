@@ -42,6 +42,9 @@ namespace DeviationForm
             this.Left = Properties.Settings.Default.Left;
             this.Width = Properties.Settings.Default.Width;
             this.Height = Properties.Settings.Default.Height;
+
+            if (Properties.Settings.Default.Maximized)
+                this.SourceInitialized += (s, a) => this.WindowState = WindowState.Maximized;
         }
         
         private void OpenFile(string fName)
@@ -113,6 +116,11 @@ namespace DeviationForm
             Properties.Settings.Default.Left = this.Left;
             Properties.Settings.Default.Width = this.Width;
             Properties.Settings.Default.Height = this.Height;
+
+            if (this.WindowState == System.Windows.WindowState.Maximized)
+                Properties.Settings.Default.Maximized = true;
+            else
+                Properties.Settings.Default.Maximized = false;
 
             if (!this.btnSaveConfig.IsEnabled)
             {

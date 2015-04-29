@@ -35,8 +35,8 @@
     <Setting Name="errMailSub" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Error in Deviation tracking doodad.</Value>
     </Setting>
-    <Setting Name="Setting" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
+    <Setting Name="Maximized" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>
